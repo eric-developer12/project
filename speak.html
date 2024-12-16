@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animation Input</title>
+  <style>
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+/* Container to hold the text input and display */
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 500px;
+}
+
+/* Style for the heading */
+h1 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 24px;
+}
+
+/* Style for the input box */
+textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style for the input box focus (animation when typing) */
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Style for the display text */
+.display-text {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    min-height: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Animation for typing effect */
+@keyframes typingAnimation {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Text display with typing animation */
+.display-text.typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #333;
+    animation: typingAnimation 4s steps(40) 1s 1 normal both;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Andika amagambo hano:</h1>
+        <!-- Text input field -->
+        <textarea id="inputBox" placeholder="Andika amagambo hano..." rows="4" cols="50"></textarea>
+        <p id="displayText" class="display-text"></p>
+    </div>
+
+    <script>
+// Select the input box and the display text element
+const inputBox = document.getElementById('inputBox');
+const displayText = document.getElementById('displayText');
+
+// Listen for input event on the textarea
+inputBox.addEventListener('input', function () {
+    const userInput = inputBox.value;
+
+    // If there is text, show the display text with typing effect
+    if (userInput.trim() !== '') {
+        displayText.textContent = userInput;
+        displayText.classList.add('typing'); // Add typing animation
+        displayText.style.opacity = 1; // Make sure text is visible
+    } else {
+        // Hide the text if the input box is empty
+        displayText.style.opacity = 0;
+        displayText.classList.remove('typing');
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Chart with Canvas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #myChart {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Simple Bar Chart Using Canvas</h2>
+
+<canvas id="myChart" width="500" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById('myChart');
+    const ctx = canvas.getContext('2d');
+
+    // Chart Data
+    const data = [50, 100, 150, 200, 250];
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+
+    // Bar Chart Drawing
+    const barWidth = 50;
+    const barSpacing = 70;
+
+    // Setting up the chart
+    ctx.fillStyle = '#3498db'; // Bar color
+    for (let i = 0; i < data.length; i++) {
+        const barHeight = data[i];
+        const x = i * barSpacing + 50;
+        const y = canvas.height - barHeight - 30;
+
+        ctx.fillRect(x, y, barWidth, barHeight);
+
+        // Adding labels below each bar
+        ctx.fillStyle = '#000';
+        ctx.fillText(labels[i], x + 10, canvas.height - 10);
+    }
+</script>
+
+</body>
+</html>
